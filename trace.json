@@ -51,8 +51,8 @@
     "week_number": 1
   },
   {
-    "of_total": 34,
-    "mark": 32,
+    "of_total": 35,
+    "mark": 34,
     "results": [
       {
         "value": 1,
@@ -160,6 +160,10 @@
       },
       {
         "value": 1,
+        "name": "Exercise 3: loops_1a - 1d for loop"
+      },
+      {
+        "value": 1,
         "name": "Exercise 3: loops_1c - 1d with arguments"
       },
       {
@@ -187,7 +191,7 @@
         "name": "Exercise 3: loops_7 - pyramid of stars"
       },
       {
-        "value": 0,
+        "value": 1,
         "name": "Lab book entry completed"
       }
     ],

@@ -258,14 +258,14 @@ def loops_7():
     This is a hard problem. Use lots of experimentation and draw
     lots of diagrams!
     """
-    pyramid = []
+    """pyramid = []
     for i in range(5):
         pyramid.append(pyramid_row)
         pyramid_row = []
         for j in range(9):
             pyramid_row.append("*")
         pyramid.append(pyramid_row)
-    return pyramid
+    return pyramid"""
 
 
 def little_printer(some_kind_of_list, exercise_name):

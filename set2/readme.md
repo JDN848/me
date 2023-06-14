@@ -1,1 +1,2 @@
 TODO: Reflect on what you learned this week and what is still unclear.
+Learnt about lists, how to nest them and how to call them into other lists. there's still alot i need to learn and right now im not sure if what i know is even correct. I dont know what I dont know kind of situation. Hopefully i'll understand what i'm doing by the end of this term but right not im mostly just googling the solutions and hoping someone else can show me how to do it.

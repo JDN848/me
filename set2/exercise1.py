@@ -17,20 +17,28 @@ import platform
 # I think this will print "hello! Let's get started" by calling the print function.
 print("hello! Let's get started")  # it printed "hello! Let's get started"
 
+# creates a list of words including 'what', 'does', etc
 some_words = ["what", "does", "this", "line", "do", "?"]
 
+# if the word 'word' is in the list some_words then print 'word'
 for word in some_words:
     print(word)
 
+# if 'x' is in the list some_words then print 'x'
 for x in some_words:
     print(x)
 
+# recreates the list of words in some_words
 print(some_words)
 
+# it is a function that asks if there are words 
+# in some_words that are longer than 3 letters then print 
+# "some_words contains more than 3 words"
 if len(some_words) > 3:
     print("some_words contains more than 3 words")
 
-
+# defines the usefulFunction() as a function that pulls the platform
+#information of the current user
 def usefulFunction():
     """
     You may want to look up what uname does before you guess

@@ -6,6 +6,20 @@ Steps on the way to making your own guessing game.
 import random
 
 
+def super_asker(low, high, message):
+    while True:
+        number = input(message)
+        try:
+            number = int(number)
+            if low <= number <= high:
+                print(f"Alright, so {number}?")
+                return number
+            else:
+                print(f"That's not quite right.. try again.")
+        except ValueError as ve:
+            print("can't turn that into a number")
+
+
 def advancedGuessingGame():
     """Play a guessing game with a user.
 
@@ -30,36 +44,26 @@ def advancedGuessingGame():
     """
 
     print("\nWelcome to the guessing game!")
-    print("A number between 0 and _ ?")
-    upperBound = input("Enter an upper bound: ")
-    print(f"OK then, a number between 0 and {upperBound} ?")
-    upperBound = int(upperBound)
 
-    actualNumber = random.randint(0, upperBound)
+    upperBound = super_asker(-5000, 5000, "Enter an upper bound: ")
+    lowerBound = super_asker(-5000, upperBound, "Enter a lower bound: ")
 
+    actualNumber = random.randint(lowerBound, upperBound)
 
-    while True:
-        try:
-          guessedNumber = input("Guess a number: ")
-          print(f"you guessed {guessedNumber},")
-          if guessedNumber.isdigit():
-              guessedNumber = int(guessedNumber)
-          else:
-              raise ValueError()
-          
-          if guessedNumber == actualNumber:
-            print(f"You got it!! It was {actualNumber}")
-            return "You got it!"
-          elif guessedNumber < actualNumber:
+    guessed = False
+    while not guessed:
+        guessedNumber = super_asker(lowerBound, upperBound, "Guess a number: ")
+        print(f"You guessed {guessedNumber},")
+        if guessedNumber == actualNumber:
+            guessed = True
+        elif guessedNumber < lowerBound or guessedNumber > upperBound:
+            print(f"Error, guess is outside of range. Please try again.")
+        elif guessedNumber < actualNumber:
             print("Too small, try again :'(")
-          else:
+        else:
             print("Too big, try again :'(")
-        except:
-          ValueError
-          
-          print(f'You do know what a number is right? Try again: ')
-          break
 
+    return "You got it!"
     # the tests are looking for the exact string "You got it!". Don't modify that!
 
 

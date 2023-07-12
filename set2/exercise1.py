@@ -31,14 +31,15 @@ for x in some_words:
 # recreates the list of words in some_words
 print(some_words)
 
-# it is a function that asks if there are words 
-# in some_words that are longer than 3 letters then print 
+# it is a function that asks if there are words
+# in some_words that are longer than 3 letters then print
 # "some_words contains more than 3 words"
 if len(some_words) > 3:
     print("some_words contains more than 3 words")
 
+
 # defines the usefulFunction() as a function that pulls the platform
-#information of the current user
+# information of the current user
 def usefulFunction():
     """
     You may want to look up what uname does before you guess

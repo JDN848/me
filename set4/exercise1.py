@@ -37,6 +37,7 @@ def get_some_details():
          dictionary, you'll need integer indeces for lists, and named keys for
          dictionaries.
     """
+    mode = "r"
     json_data = open(LOCAL + "/lazyduck.json").read()
 
     data = json.loads(json_data)

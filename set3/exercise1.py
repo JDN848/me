@@ -52,20 +52,11 @@ def stubborn_asker(low, high):
 
     while True:
         number = int(input(f"Enter a number between {low} and {high} "))
-        print(type(number), number, type(high), high, type(low), low)
-        if (
-            all([type(number) is int, type(high) is int, type(low) is int])
-            and low <= number <= high
-        ):
+        if low <= number <= high:
             print("You got it!")
-            return "You got it!"
+            return number
         else:
-            print(
-                "Are you dumb? Try again but better this time...",
-                type(number),
-                type(high),
-                type(low),
-            )
+            print("Are you dumb? Try again but better this time...")
 
 
 def not_number_rejector(message):
@@ -98,26 +89,18 @@ def super_asker(low, high):
     Combine what you learnt from stubborn_asker and not_number_rejector
     to make a function that does it all!
     """
-    in_range = False
 
-    while not in_range:
+    while True:
         number = input(f"Enter a number between {low} and {high}: ")
         try:
-            if number.isdigit():
-                number = int(number)
-            else:
-                raise ValueError()
+            number = int(number)
             if low <= number <= high:
                 print(f"You got it!")
-                in_range = True
+                return number
             else:
-                raise ValueError()
-        except:
-            ValueError
-            print(f"That's not quite right.. try again.")
-            break
-
-    return "You got it!"
+                print(f"That's not quite right.. try again.")
+        except ValueError as ve:
+            print("can't turn that into a number")
 
 
 if __name__ == "__main__":

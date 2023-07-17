@@ -38,10 +38,21 @@ def get_some_details():
          dictionaries.
     """
     mode = "r"
-    json_data = open(LOCAL + "/lazyduck.json").read()
+    with open((LOCAL + "\lazyduck.json"), mode, encoding="utf-8") as some_details:
+        some_details = json.load(some_details)
 
-    data = json.loads(json_data)
-    return {"lastName": None, "password": None, "postcodePlusID": None}
+        lastName = some_details["results"][0]["name"]["last"]
+        passWord = some_details["results"][0]["login"]["password"]
+        postCode = int(some_details["results"][0]["location"]["postcode"])
+        IDValue = int(some_details["results"][0]["id"]["value"])
+
+        postCodeID = postCode + IDValue
+
+    return {
+        "lastName": lastName,
+        "password": passWord,
+        "postcodePlusID": postCodeID,
+    }
 
 
 def wordy_pyramid():
@@ -78,7 +89,26 @@ def wordy_pyramid():
     ]
     TIP: to add an argument to a URL, use: ?argName=argVal e.g. &wordlength=
     """
+    start = 3
+    stop = 21
+    step = 2
+
     pyramid = []
+
+    for wordLength in range(start, stop, step):
+        word = requests.get(
+            f"https://us-central1-waldenpondpress.cloudfunctions.net/give_me_a_word?wordlength={wordLength}"
+        )
+        word = word.text
+        pyramid.append(word)
+
+        if wordLength >= stop - step:
+            for negWordLegth in range(stop - 1, start, -step):
+                word = requests.get(
+                    f"https://us-central1-waldenpondpress.cloudfunctions.net/give_me_a_word?wordlength={negWordLegth}"
+                )
+                word = word.text
+                pyramid.append(word)
 
     return pyramid
 
@@ -97,13 +127,34 @@ def pokedex(low=1, high=5):
          get very long. If you are accessing a thing often, assign it to a
          variable and then future access will be easier.
     """
-    id = 5
-    url = f"https://pokeapi.co/api/v2/pokemon/{id}"
+
+    heightList = []
+
+    for id in range(low, high):
+        url = f"https://pokeapi.co/api/v2/pokemon/{id}"
+        r = requests.get(url)
+        if r.status_code is 200:
+            data = json.loads(r.text)
+            height = data["height"]
+
+            heightList.append(height)
+
+        else:
+            return "ERROR 404"
+
+    tallHeight = max(heightList)
+    tallIndex = heightList.index(tallHeight)
+    tallID = tallIndex + low
+
+    url = f"https://pokeapi.co/api/v2/pokemon/{tallID}"
     r = requests.get(url)
     if r.status_code is 200:
-        the_json = json.loads(r.text)
+        data = json.loads(r.text)
+        pokeName = data["name"]
+        pokeWeight = data["weight"]
+        pokeHeight = data["height"]
 
-    return {"name": None, "weight": None, "height": None}
+    return {"name": pokeName, "weight": pokeWeight, "height": pokeHeight}
 
 
 def diarist():
@@ -123,7 +174,14 @@ def diarist():
 
     NOTE: this function doesn't return anything. It has the _side effect_ of modifying the file system
     """
-    pass
+    with open(
+        LOCAL + "\Trispokedovetiles(laser).gcode", "r", encoding="utf-8"
+    ) as gcode:
+        data = gcode.read()
+        count = data.count("M10 P1")
+
+    with open(LOCAL + "\lasers.pew", "w", encoding="utf-8") as pew_num:
+        pew_num.write(f"{count}")
 
 
 if __name__ == "__main__":

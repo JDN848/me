@@ -3,4 +3,4 @@ Found a dataset and looked through the information.
 Starting to think about how i could explore the data.
 Thinking about what other supplemental data I could use in conjuction.
 Debating whether or
-not I want to put in the effort... I do even have the time?
+not I want to put in the effort... Do I even have the time?

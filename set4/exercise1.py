@@ -133,7 +133,7 @@ def pokedex(low=1, high=5):
     for id in range(low, high):
         url = f"https://pokeapi.co/api/v2/pokemon/{id}"
         r = requests.get(url)
-        if r.status_code is 200:
+        if r.status_code == 200:
             data = json.loads(r.text)
             height = data["height"]
 
@@ -148,7 +148,7 @@ def pokedex(low=1, high=5):
 
     url = f"https://pokeapi.co/api/v2/pokemon/{tallID}"
     r = requests.get(url)
-    if r.status_code is 200:
+    if r.status_code == 200:
         data = json.loads(r.text)
         pokeName = data["name"]
         pokeWeight = data["weight"]
